@@ -35,13 +35,23 @@ CODSOFT/
 ```
 
 ## 🚀 How to Run Locally
-1. Clone this repository or download the folder.
-2. Ensure you have [Node.js](https://nodejs.org/) installed.
-3. Open your terminal in the project directory and run:
-   ```bash
-   npx http-server . -p 8080
-   ```
-4. Open your browser and navigate to `http://localhost:8080`.
+
+### Method 1: Direct Open (Easiest)
+Simply locate the `index.html` file in the project folder and double-click it to open it in your default web browser.
+
+### Method 2: Command Line (Windows)
+Open your terminal in the project directory and run:
+```powershell
+start index.html
+```
+
+### Method 3: Local Dev Server (Recommended for development)
+If you have [Node.js](https://nodejs.org/) installed, you can run a local server to ensure all assets load correctly without CORS issues:
+```bash
+# Using npx (no installation required)
+npx http-server . -p 8080
+```
+Then visit `http://localhost:8080` in your browser.
 
 ## 📄 License
 This project was created for the **Codesoft Internship Task**. Free to use for educational purposes.
