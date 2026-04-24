@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzy - Online Quiz Maker</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo" id="nav-logo">
+                <span class="logo-icon">Q</span>
+                <span>Quizzy</span>
+            </div>
+            <div class="nav-actions" id="nav-actions">
+                <!-- Injected via JS based on Auth state -->
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Notification Toast -->
+        <div id="toast" class="toast hidden">Message</div>
+
+        <!-- AUTHENTICATION VIEW -->
+        <section id="auth-view" class="view hidden">
+            <div class="auth-card glassmorphism">
+                <h2 id="auth-title">Welcome to Quizzy</h2>
+                <p id="auth-subtitle">Login to create and take tests</p>
+                <form id="auth-form">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required placeholder="Enter your username">
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <p class="auth-switch">Don't have an account? <span id="toggle-auth">Register here</span></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- HOME VIEW -->
+        <section id="home-view" class="view hidden">
+            <div class="hero-section text-center">
+                <h1 class="text-gradient">Ready for a Challenge?</h1>
+                <p>Create engaging quizzes or test your knowledge by taking a community quiz.</p>
+                <div class="action-cards">
+                    <div class="action-card glassmorphism" id="go-to-create">
+                        <div class="action-icon text-accent">+</div>
+                        <h3>Create Quiz</h3>
+                        <p>Build your own quiz with custom questions and share it.</p>
+                    </div>
+                    <div class="action-card glassmorphism" id="go-to-list">
+                        <div class="action-icon text-primary">✓</div>
+                        <h3>Take Quiz</h3>
+                        <p>Browse available quizzes and test your knowledge now.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ LISTING VIEW -->
+        <section id="quiz-list-view" class="view hidden">
+            <div class="section-header">
+                <h2>Available Quizzes</h2>
+                <button class="btn btn-outline" id="back-from-list">⬅ Back to Home</button>
+            </div>
+            
+            <div id="quizzes-container" class="quizzes-grid">
+                <!-- Quizzes Injected Here -->
+            </div>
+        </section>
+
+        <!-- QUIZ CREATION VIEW -->
+        <section id="quiz-creation-view" class="view hidden">
+             <div class="section-header">
+                <h2>Create New Quiz</h2>
+                <button class="btn btn-outline" id="back-from-create">⬅ Back to Home</button>
+            </div>
+            <div class="creation-wrapper glassmorphism">
+                <div class="input-group">
+                    <label for="quiz-title">Quiz Title</label>
+                    <input type="text" id="quiz-title" placeholder="e.g. Advanced JavaScript Concepts" required>
+                </div>
+                
+                <div id="questions-builder">
+                    <!-- Dynamic Questions Here -->
+                </div>
+                
+                <div class="builder-actions">
+                    <button class="btn btn-outline" id="add-question-btn">+ Add Question</button>
+                    <button class="btn btn-primary" id="save-quiz-btn">Save & Publish Quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ TAKING VIEW -->
+        <section id="quiz-taking-view" class="view hidden">
+            <div class="quiz-taking-wrapper glassmorphism">
+                <div class="quiz-header">
+                    <h3 id="taking-quiz-title">Quiz Title</h3>
+                    <div class="progress-tracker" id="taking-progress">Question 1 / 5</div>
+                </div>
+                
+                <div class="question-container">
+                    <h2 id="taking-question-text">Question Text</h2>
+                    <div id="taking-options" class="options-grid">
+                        <!-- Options Here -->
+                    </div>
+                </div>
+                
+                <div class="quiz-footer">
+                    <button class="btn btn-primary" id="next-question-btn" disabled>Next Question</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ RESULTS VIEW -->
+        <section id="quiz-results-view" class="view hidden">
+             <div class="results-wrapper glassmorphism text-center">
+                <h2>Quiz Completed!</h2>
+                <div class="score-circle">
+                    <span id="result-score" class="text-gradient">80%</span>
+                </div>
+                <p id="result-text">You answered 4 out of 5 questions correctly.</p>
+                <div class="results-action">
+                    <button class="btn btn-outline" id="back-to-home-btn">Go to Dashboard</button>
+                </div>
+             </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

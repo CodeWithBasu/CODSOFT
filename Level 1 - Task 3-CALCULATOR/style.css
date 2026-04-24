@@ -1,0 +1,187 @@
+/* =========================================
+   CALCULATOR: Premium Glassmorphism Theme
+   ========================================= */
+
+/* --- Variables & Theme --- */
+:root {
+    --bg-main: #06050b;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --secondary: #a855f7;
+    --accent: #06b6d4;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    
+    --btn-bg: rgba(255, 255, 255, 0.03);
+    --btn-hover: rgba(255, 255, 255, 0.1);
+    --btn-action: rgba(6, 182, 212, 0.15);
+    --btn-action-hover: rgba(6, 182, 212, 0.3);
+    --btn-operator: rgba(168, 85, 247, 0.15);
+    --btn-operator-hover: rgba(168, 85, 247, 0.3);
+    
+    --gradient-equal: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Base Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    /* Adding a subtle background glow */
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
+}
+
+/* --- Calculator Container --- */
+.calculator-container {
+    width: 360px;
+    padding: 1.5rem;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 0 1px var(--glass-border);
+}
+
+.glassmorphism {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* --- Display Screen --- */
+.calculator-display {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-bottom: 1.5rem;
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.3);
+    min-height: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.previous-operand {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    min-height: 1.5rem;
+    font-weight: 400;
+}
+
+.current-operand {
+    color: var(--text-primary);
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+/* --- CSS Grid Details --- */
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.8rem;
+}
+
+/* --- Buttons --- */
+.btn {
+    border: 1px solid var(--glass-border);
+    outline: none;
+    background-color: var(--btn-bg);
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    font-weight: 500;
+    border-radius: 16px;
+    height: 70px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.span-two {
+    grid-column: span 2;
+    border-radius: 16px;
+}
+
+/* Specific Button Colors */
+.btn-action {
+    background-color: var(--btn-action);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.btn-action:hover {
+    background-color: var(--btn-action-hover);
+}
+
+.btn-operator {
+    background-color: var(--btn-operator);
+    color: var(--secondary);
+    font-size: 1.6rem;
+}
+
+.btn-operator:hover {
+    background-color: var(--btn-operator-hover);
+}
+
+.btn-equal {
+    background: var(--gradient-equal);
+    border: none;
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+    font-size: 1.8rem;
+}
+
+.btn-equal:hover {
+    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+    background: linear-gradient(135deg, var(--primary-hover) 0%, #9333ea 100%);
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 400px) {
+    .calculator-container {
+        width: 100%;
+        max-width: 320px;
+        padding: 1rem;
+    }
+    
+    .btn {
+        height: 60px;
+        font-size: 1.2rem;
+    }
+    
+    .current-operand {
+        font-size: 2.2rem;
+    }
+}
