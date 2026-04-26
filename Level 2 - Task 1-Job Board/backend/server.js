@@ -17,50 +17,52 @@ const db = new sqlite3.Database(dbPath, (err) => {
     } else {
         console.log('Connected to the SQLite database.');
         
-        // Create users table
-        db.run(`CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT UNIQUE NOT NULL,
-            password TEXT NOT NULL,
-            role TEXT NOT NULL CHECK(role IN ('employer', 'candidate'))
-        )`);
+        db.serialize(() => {
+            // Create users table
+            db.run(`CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                role TEXT NOT NULL CHECK(role IN ('employer', 'candidate'))
+            )`);
 
-        // Create jobs table
-        db.run(`CREATE TABLE IF NOT EXISTS jobs (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            company TEXT NOT NULL,
-            location TEXT NOT NULL,
-            type TEXT NOT NULL,
-            description TEXT NOT NULL,
-            employerId INTEGER NOT NULL,
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (employerId) REFERENCES users (id)
-        )`);
+            // Create jobs table
+            db.run(`CREATE TABLE IF NOT EXISTS jobs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                company TEXT NOT NULL,
+                location TEXT NOT NULL,
+                type TEXT NOT NULL,
+                description TEXT NOT NULL,
+                employerId INTEGER NOT NULL,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (employerId) REFERENCES users (id)
+            )`);
 
-        // Create applications table
-        db.run(`CREATE TABLE IF NOT EXISTS applications (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            jobId INTEGER NOT NULL,
-            candidateId INTEGER NOT NULL,
-            status TEXT DEFAULT 'pending',
-            coverLetter TEXT,
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (jobId) REFERENCES jobs (id),
-            FOREIGN KEY (candidateId) REFERENCES users (id)
-        )`);
-        
-        // Seed initial jobs if empty
-        db.get("SELECT COUNT(*) as count FROM jobs", [], (err, row) => {
-            if (row && row.count === 0) {
-                console.log("Seeding initial jobs data...");
-                const stmt = db.prepare("INSERT INTO jobs (title, company, location, type, description, employerId) VALUES (?, ?, ?, ?, ?, ?)");
-                stmt.run("Frontend Developer", "TechNova", "Remote", "Full-time", "We are looking for a skilled React developer to build modern UIs.", 1);
-                stmt.run("Backend Engineer", "DataSync Systems", "New York, NY", "Full-time", "Design and build scalable server-side systems using Node.js.", 1);
-                stmt.run("UI/UX Designer", "Creative Sphere", "San Francisco, CA", "Contract", "Craft beautiful and intuitive user interfaces for our clients.", 2);
-                stmt.finalize();
-            }
+            // Create applications table
+            db.run(`CREATE TABLE IF NOT EXISTS applications (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                jobId INTEGER NOT NULL,
+                candidateId INTEGER NOT NULL,
+                status TEXT DEFAULT 'pending',
+                coverLetter TEXT,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (jobId) REFERENCES jobs (id),
+                FOREIGN KEY (candidateId) REFERENCES users (id)
+            )`);
+            
+            // Seed initial jobs if empty
+            db.get("SELECT COUNT(*) as count FROM jobs", [], (err, row) => {
+                if (row && row.count === 0) {
+                    console.log("Seeding initial jobs data...");
+                    const stmt = db.prepare("INSERT INTO jobs (title, company, location, type, description, employerId) VALUES (?, ?, ?, ?, ?, ?)");
+                    stmt.run("Frontend Developer", "TechNova", "Remote", "Full-time", "We are looking for a skilled React developer to build modern UIs.", 1);
+                    stmt.run("Backend Engineer", "DataSync Systems", "New York, NY", "Full-time", "Design and build scalable server-side systems using Node.js.", 1);
+                    stmt.run("UI/UX Designer", "Creative Sphere", "San Francisco, CA", "Contract", "Craft beautiful and intuitive user interfaces for our clients.", 2);
+                    stmt.finalize();
+                }
+            });
         });
     }
 });

@@ -8,8 +8,11 @@ export default function Jobs() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchJobs('');
-  }, []);
+    const delayDebounceFn = setTimeout(() => {
+      fetchJobs(search);
+    }, 300); // 300ms delay for auto-search
+    return () => clearTimeout(delayDebounceFn);
+  }, [search]);
 
   const fetchJobs = (query) => {
     setLoading(true);
