@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Briefcase, ArrowRight, MapPin, Building } from 'lucide-react';
+import { ArrowRight, MapPin, Building } from 'lucide-react';
 
 export default function Home() {
   const [featuredJobs, setFeaturedJobs] = useState([]);

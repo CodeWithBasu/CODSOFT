@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Building, MapPin } from 'lucide-react';
 
@@ -6,13 +6,6 @@ export default function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      fetchJobs(search);
-    }, 300); // 300ms delay for auto-search
-    return () => clearTimeout(delayDebounceFn);
-  }, [search]);
 
   const fetchJobs = (query) => {
     setLoading(true);
@@ -22,6 +15,13 @@ export default function Jobs() {
       .catch(console.error)
       .finally(() => setLoading(false));
   };
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      fetchJobs(search);
+    }, 300); // 300ms delay for auto-search
+    return () => clearTimeout(delayDebounceFn);
+  }, [search]);
 
   const handleSearch = (e) => {
     e.preventDefault();

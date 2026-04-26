@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Briefcase, FileText, CheckCircle } from 'lucide-react';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -14,8 +13,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!user) return;
-    
-    setLoading(true);
+
     if (user.role === 'employer') {
       fetch(`http://localhost:5000/api/employers/${user.id}/applications`)
         .then(res => res.json())
