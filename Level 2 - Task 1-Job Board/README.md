@@ -13,25 +13,20 @@ A full-stack Job Board platform built with **React** (Vite), **Node.js/Express**
 
 ## 🚀 Quick Start / Run Commands
 
-To run this full-stack project, you will need two terminal windows: one for the backend and one for the frontend.
+To run this full-stack project easily, you just need a single terminal window now thanks to `concurrently`!
 
-### 1. Setup & Starting the Backend
 Open your terminal and run the following:
 ```powershell
-cd "Level 2 - Task 1-Job Board/backend"
-npm install
-node server.js
-```
-*The API will start on http://localhost:5000 and create the local `database.sqlite` file.*
+cd "Level 2 - Task 1-Job Board"
 
-### 2. Setup & Starting the Frontend
-Open a **second** terminal window and run:
-```powershell
-cd "Level 2 - Task 1-Job Board/frontend"
-npm install
+# Install all dependencies (frontend, backend, and root)
+npm run install:all
+
+# Start both servers simultaneously
 npm run dev
 ```
-*The React app will launch on http://localhost:5173.*
+
+*The API will start on http://localhost:5000 and the React app will launch on http://localhost:5173.*
 
 ## 📖 How to Use
 1. Visit the home page to see featured jobs.
