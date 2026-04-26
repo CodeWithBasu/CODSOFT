@@ -34,24 +34,50 @@ CODSOFT/
     └── resume.pdf    # Downloadable resume placeholder
 ```
 
-## 🚀 How to Run Locally
+## 🚀 Quick Start / Run Commands
 
-### Method 1: Direct Open (Easiest)
-Simply locate the `index.html` file in the project folder and double-click it to open it in your default web browser.
+To run this project from your terminal, follow these steps to ensure paths with spaces are handled correctly:
 
-### Method 2: Command Line (Windows)
-Open your terminal in the project directory and run:
+### 1. Path Selection & Navigation
+Open your terminal (PowerShell or Bash) and navigate to this folder. **Note the quotes** required for paths with spaces:
+```powershell
+cd "Level 1 - Task 1-PORTFOLIO"
+```
+
+### 2. Run the Application
+You can choose one of the following commands:
+
+**Option A: Simple Open (Windows)**
 ```powershell
 start index.html
 ```
 
-### Method 3: Local Dev Server (Recommended for development)
-If you have [Node.js](https://nodejs.org/) installed, you can run a local server to ensure all assets load correctly without CORS issues:
+**Option B: PHP Local Server**
 ```bash
-# Using npx (no installation required)
-npx http-server . -p 8080
+php -S localhost:8000
 ```
-Then visit `http://localhost:8080` in your browser.
+
+**Option C: Node.js (Live Server)**
+```bash
+npx live-server
+```
+
+## 🛠️ Detailed Running Instructions
+
+### Method 1: VS Code Live Server (Most Recommended)
+1. Open the folder `Level 1 - Task 1-PORTFOLIO` in VS Code.
+2. Right-click on `index.html`.
+3. Select **"Open with Live Server"**.
+
+### Method 2: Manual Direct Open
+- Navigate to the folder in File Explorer.
+- Double-click `index.html`.
+
+### Method 3: Command Line (Windows PowerShell)
+If you are at the root `CODSOFT` directory, run:
+```powershell
+cd "Level 1 - Task 1-PORTFOLIO"; start index.html
+```
 
 ## 📄 License
 This project was created for the **Codesoft Internship Task**. Free to use for educational purposes.
