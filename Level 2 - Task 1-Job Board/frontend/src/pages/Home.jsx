@@ -6,7 +6,7 @@ export default function Home() {
   const [featuredJobs, setFeaturedJobs] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/jobs')
+    fetch('/api/jobs')
       .then(res => res.json())
       .then(data => setFeaturedJobs(data.slice(0, 3)))
       .catch(console.error);

@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
     
-    fetch(`http://localhost:5000${endpoint}`, {
+    fetch(`${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)

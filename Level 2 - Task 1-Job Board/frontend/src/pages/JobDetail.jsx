@@ -13,7 +13,7 @@ export default function JobDetail() {
   const [applied, setApplied] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/jobs/${id}`)
+    fetch(`/api/jobs/${id}`)
       .then(res => res.json())
       .then(data => setJob(data))
       .catch(console.error)
@@ -32,7 +32,7 @@ export default function JobDetail() {
       return;
     }
 
-    fetch('http://localhost:5000/api/applications', {
+    fetch('/api/applications', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

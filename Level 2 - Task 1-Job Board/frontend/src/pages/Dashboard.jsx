@@ -15,13 +15,13 @@ export default function Dashboard() {
     if (!user) return;
 
     if (user.role === 'employer') {
-      fetch(`http://localhost:5000/api/employers/${user.id}/applications`)
+      fetch(`/api/employers/${user.id}/applications`)
         .then(res => res.json())
         .then(resData => setData(resData))
         .catch(console.error)
         .finally(() => setLoading(false));
     } else {
-      fetch(`http://localhost:5000/api/candidates/${user.id}/applications`)
+      fetch(`/api/candidates/${user.id}/applications`)
         .then(res => res.json())
         .then(resData => setData(resData))
         .catch(console.error)
@@ -31,7 +31,7 @@ export default function Dashboard() {
 
   const handlePostJob = (e) => {
     e.preventDefault();
-    fetch('http://localhost:5000/api/jobs', {
+    fetch('/api/jobs', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...newJob, employerId: user.id })

@@ -9,7 +9,7 @@ export default function Jobs() {
 
   const fetchJobs = (query) => {
     setLoading(true);
-    fetch(`http://localhost:5000/api/jobs?search=${query}`)
+    fetch(`/api/jobs?search=${query}`)
       .then(res => res.json())
       .then(data => setJobs(data))
       .catch(console.error)
